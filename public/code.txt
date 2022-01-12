@@ -1,0 +1,172 @@
+// import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+// import Result from "./pages/Result";
+// import ProductP from "./pages/ProductP";
+// import Cart from "./pages/Cart";
+// import Result from "./pages/Result";
+// import Cart from "./pages/Cart";
+import Login from "./pages/Login";
+
+// import ProductList from "./pages/ProductList";
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import Register from "./pages/Register";
+
+
+const App = () => {
+  return (
+    <>
+    <Router>
+      <Switch>
+        <Route path="/register">
+          <Register />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+      </Router>
+    </>
+  );
+
+};
+
+export default App;
+
+
+//Navbar
+
+import { Badge } from '@material-ui/core';
+import { Search, ShoppingCartOutlined } from '@material-ui/icons';
+import { mobile } from "../responsive"
+import React from 'react'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom';
+
+const Container = styled.div`
+    height: 60px;
+    background-color: #c5f0c5;
+    ${mobile({ height: "50px"})}
+`;
+
+const InputContainer = styled.div`
+    width: 50%;
+    height: 50px;
+    margin-top: 5px;
+    background-color: red;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    border: 1px solid lightgray;
+`;
+
+const Input = styled.input`
+    border: none;
+    flex: 8;
+    font-size: 18px;
+    padding-left: 20px;
+`;
+
+
+const Button = styled.button`
+    flex: 1;
+    border: none;
+    background-color: teal;
+    color: white;
+    cursor: pointer;
+`;
+
+const Wrapper = styled.div`
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    ${mobile({ padding: "10px 0px"})}
+
+`;
+
+const Left = styled.div`
+    flex: 1;
+    display: flex;
+    align-items: center;
+`;
+
+const Language = styled.span`
+    font-size: 16px;
+    cursor: pointer;
+    ${mobile({display: "none"})}
+`;
+
+
+const Center = styled.div`
+    flex: 1;
+    text-align: center;
+`;
+
+const Logo = styled.h1`
+    font-weight: bold;
+    ${mobile({fontSize: "18px"})}
+    
+`;
+
+const Right = styled.div`
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    ${mobile({ flex:3, justifyContent: "center"})}
+`;
+
+const MenuItem = styled.div`
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 25px;
+    ${mobile({fontSize: "12px", marginLeft: "10px"})}
+
+`;
+
+const Navbar = () => {
+    return (
+        <Container>
+            <InputContainer>
+                <Input placeholder="Enter your medicine Name" />
+                <Button>
+                    <Search />
+                </Button>
+            </InputContainer>
+            <Wrapper>
+                <Left><Language>MedLoc</Language>
+
+                    {/* <SearchContainer>
+                        <Input />
+                        <Search style={{color:"gray", fontSize: 16}} />
+                    </SearchContainer> */}
+
+                </Left>
+                <Center><Logo>MedLoc</Logo></Center>
+                <Right>
+                    <MenuItem><Link to="/result">REGISTER</Link></MenuItem>
+                    <MenuItem>SIGN IN</MenuItem>
+                    <MenuItem>
+                        <Badge badgeContent={4} color="primary">
+                            <ShoppingCartOutlined></ShoppingCartOutlined>
+                        </Badge>
+                    </MenuItem>
+                </Right>
+            </Wrapper>
+        </Container>
+    )
+}
+
+export default Navbar
